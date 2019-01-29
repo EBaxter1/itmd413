@@ -3,6 +3,8 @@
 # This program provides information about stocks that is provided by the user
 
 print("Hello, welcome to the stock program!\n")
+name = input("What is your name? ")
+print("Hello " + name + "!\n")
 
 # inputs
 try:
@@ -12,7 +14,7 @@ try:
     sold_cost = float(input("Please input the amount you sold each stock for:"))
     sold_amount = int(input("Please input the number of stocks you sold:"))
 except ValueError:
-    print("\n Incorrect format entered for one of the prompts. Program ending")
+    print("\nIncorrect format entered for one of the prompts. Program ending")
     quit()
     
 #calulations
@@ -24,13 +26,14 @@ grand_total = stock_total + commission_sold_total + commission_total
 result = sold_total - grand_total
  
 # outputs
-print("\nThe total amount of money you paid for the stocks is:", stock_total)
-print("The amount of money you paid to the stockbroker for all the stocks is:", commission_total)
-print("The total amount you got for selling the stocks is:", sold_total)
-print("The amount of money paid to the stockbroker for the sold stocks is:", commission_sold_total)
+print("\nThe total amount of money you paid for the stocks is: ${0:.2f}".format(stock_total))
+print("The amount of money you paid to the stockbroker for all the stocks is: ${0:.2f}".format(commission_total))
+print("The total amount you got for selling the stocks is: ${0:.2f}".format(sold_total))
+print("The amount of money paid to the stockbroker for the sold stocks is: ${0:.2f}".format(commission_sold_total))
+print("Your total money you have left after selling the stocks and paying out to the stockbroker is: ${0:.2f}".format(result))
 if result > 0:
-    print("You made a profit with stocks!")
+    print("You made a profit with stocks " + name + "!")
 else:
-    print("Yoiu lost money with stocks :(")
+    print("You lost money with stocks " + name + " :(")
 
 
