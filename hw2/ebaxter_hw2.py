@@ -1,8 +1,8 @@
 # File Name: hw2
 # Made by: Erin Baxter
-# This program helps a user troubleshoot for a Diesel Engine
+# This program helps a user troubleshoot for a Diesel Engine by checking different factors and then giving recommandtions
 
-print("Hello and welcome to the 'What's the *beep* is wrong with my diesel engine!?!'\n")
+print("Hello and welcome to the 'What's the *beep* is wrong with my diesel engine!?!' program\n")
 
 try:
     print("What color is the status light for the engine?")
@@ -14,7 +14,7 @@ except ValueError:
 
 
 # functions
-# check meter number 
+# go to a other functions based on the ingeter number meter was 
 def meterCheck (meter):
     print("\n")
     if (meter < 50):
@@ -34,7 +34,7 @@ def meterCheck (meter):
             print("\nInvaild choice selected, please try again with choice 1-3. Program ending")
             quit()
 
-# check presssure 
+# recommand what to do based on pressure rating 
 def pressureCheck (pressure):
     if (pressure == 1):
         print("Refer to motor service manual.")
@@ -43,7 +43,7 @@ def pressureCheck (pressure):
     else:
         print("\nInvaild choice selected, please try again with choice 1-3. Program ending")
         quit()
-# check velocity
+# recommand what to do based on velocity rating 
 def velocityCheck (velocity):
     if (velocity == 1):
         print("Refer to inlet service manual.")
