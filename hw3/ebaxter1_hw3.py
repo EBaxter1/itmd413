@@ -26,36 +26,54 @@ def outputUser(number):
     
 # return true if the card number is valid
 def isValid(number):
-    # convert number to string and the reverse it 
+    # convert number to string
     number = str(number)
-    reversedNumber = number[::-1]
     
-    length = getSize(reversedNumber)
+    # testing prefix
+    prefixList = [4, 5, 37, 6]
+    for x in prefixList:
+        prefixTest = prefixMatched(number, x)
+        if (prefixTest == True):
+            prefix = True
+            break
+        prefix = False
 
-    #make the number into an array 
-    numberList = list(reversedNumber)
     
-    totalSum = sumOfDoubleEvenPlace(numberList) + sumOfOddPlace(numberList)
+    if (prefix):
+        # reverse card number
+        reversedNumber = number[::-1]
+    
+        length = getSize(reversedNumber)
 
-    #check if sum can be divided by 10
-    result = totalSum % 10
+        #make the number into an array 
+        numberList = list(reversedNumber)
     
-    if (result == 0):
-        return True
+        totalSum = sumOfDoubleEvenPlace(numberList) + sumOfOddPlace(numberList)
+
+        #check if sum can be divided by 10
+        result = totalSum % 10
+    
+        if (result == 0):
+            return True
+        else:
+            return False
     else:
-        return False 
+        print("Unable to match prefix to card company")
+        return False
+
 
 # get the result from step 2
 def sumOfDoubleEvenPlace(number):
     length = getSize(number)
     evenSum = 0
 
-    #run through card number array and get every even number 
+    #run through card number array and get every even place number 
     for x in range(1, length, 2):
         num = getDigit(int(number[x]))
         evenSum+=num
 
     return evenSum
+
 
 # Return this number if it is a single digit, otherise, return the sum of the two digits
 def getDigit(number):
@@ -70,6 +88,7 @@ def getDigit(number):
         newSum = int(newList[0]) + int(newList[1])
         return newSum
 
+
 # return sum of odd place digits in number
 def sumOfOddPlace(number):
     length = getSize(number)
@@ -82,8 +101,15 @@ def sumOfOddPlace(number):
  
     return oddSum
 
+
 # return true if the digit d is a prefix for number
-#def prefixMatched(number, d):
+def prefixMatched(number, d):
+    length = getSize(str(d))
+    test = getPrefix(number, length)
+    if (test == d):
+        return True
+    else:
+        return False
 
 
 # return the number of digits in d
@@ -92,12 +118,21 @@ def getSize(d):
     length = int(length)
     return length
 
+
 #return the first k number of digits from number. If the
 # number of digits in number is less than k, return number
-#def getPrefix(number, k):
+def getPrefix(number, k):
+    length = getSize(number)
+    if( length < k):
+        return int(number)
+    else:
+        prefix = number[:k]
+        return int(prefix)
+
 
 # make card number input a string fortesting length 
 cardLength = getSize(str(cNumber))
+
 
 # check if real card length and then call first function 
 if (cardLength >= 13 and cardLength <= 16):
