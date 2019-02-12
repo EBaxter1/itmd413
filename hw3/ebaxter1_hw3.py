@@ -23,14 +23,14 @@ def isValid(number):
     
     numberList = list(reversedNumber)
    
-    sumOfDoubleEvenPlace(numberList)
+    evenSum = sumOfDoubleEvenPlace(numberList)
     
-    nextSum = 0      
-    for x in range(0, length, 2):
-        num = int(numberList[x])
-        nextSum+=num
-    tSum = cSum + nextSum
-    end = tSum % 10
+    oddSum = sumOfOddPlace(numberList)
+    
+    totalSum = evenSum + oddSum
+    
+    end = totalSum % 10
+    
     if (end == 0):
        print("Number is valid")
     else:
@@ -43,25 +43,33 @@ def sumOfDoubleEvenPlace(number):
     evenSum = 0
     
     for x in range(1, length, 2):
-        getDigit(int(number[x]))
-        
+        num = getDigit(int(number[x]))
+        evenSum+=num
+
+    print(evenSum)
     return evenSum
 
 # Return this number if it is a single digit, otherise, return the sum of the two digits
 def getDigit(number):
-    product = number * 2
-    if (product < 10):
-        digitSum+=product
+    numberProduct = number * 2
+    if (numberProduct < 10):
+        return numberProduct
     else:
-        product = str(product)
-        newList = list(product)
+        numberProduct = str(numberProduct)
+        newList = list(numberProduct)
         newSum = int(newList[0]) + int(newList[1])
-        digitSum+=newSum
-    return digitSum
+        return newSum
 
 # return sum of odd place digits in number
-#def sumOfOddPlace(number):
-
+def sumOfOddPlace(number):
+    length = getSize(number)
+    oddSum = 0
+    
+    for x in range(0, length, 2):
+        num = int(number[x])
+        oddSum+=num
+    print(oddSum)
+    return oddSum
 
 # return true if the digit d is a prefix for number
 #def prefixMatched(number, d):
