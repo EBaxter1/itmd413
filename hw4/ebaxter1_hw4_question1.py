@@ -18,22 +18,54 @@ yourself = input("Describe yourself(Only press enter once you are down typing): 
 
 
 def main():
-    createFile()
+    createFile(name)
 
-def createFile():
-    global name
+def createFile(userName):
     global filePath
     
-    name = name.replace(" ", "")
+    name = userName.replace(" ", "")
 
     fileName = filePath + name + ".html"
 
     writeFile(fileName)
 
-def writeFile(fName):
+def writeFile(fPath):
+    global name
+    global yourself
+
+    
+    htmlString = (f'''
+    <html>
+    <head>
+    </head>
+    <body>
+        <center>
+            <h1>{name}</h1>
+        </center>
+        <hr />
+        {yourself}
+        <hr />
+    </body>
+    </html>''')
+
+    newFile = open(fPath, "w+")
+
+    newFile.write(htmlString)
+
+    newFile.close()
+
+    print("\nYour personal html file has been created using your name!")
+
+    outputFile(fPath)
     
 
-#def outputFIle():
+def outputFile(fPath):
+    
+    print("Your file can be found at:" , fPath)
+
+    print("The file created is as follows:")
+
+    
 
     
 main()
