@@ -19,6 +19,10 @@ def searchFile():
     global sId
     stringId = str(sId)
 
+    if len(stringId) != 7:
+        print("Not a real id")
+        quit()
+
     getFile = open("student_data.txt", "r")
 
     studentInfo = []
@@ -26,6 +30,10 @@ def searchFile():
     for line in getFile:
        if stringId in line:
            studentInfo.append(line)
+
+    if studentInfo == []:
+        print("Student not found")
+        quit()
 
     code = []
     creditAll = []
@@ -37,7 +45,21 @@ def searchFile():
         creditAll.append(credit)
         gradeAll.append(grade[0])
 
-    print(code, creditAll, gradeAll)
+    #test = print("\n".join(map(str,{code}))
+
+
+    reportFormat = (f'''
+    Student Name: {name}
+    Student ID Number: {stringId}
+
+    Course Code    Course Credits   Course Grade
+    --------------------------------------------
+                   {creditAll[0]}                {gradeAll[0]}
+    ''')
+
+    print(test)
+
+      
 
 
 main()
