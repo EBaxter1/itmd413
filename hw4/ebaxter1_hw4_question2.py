@@ -13,7 +13,7 @@ filePath = ("studentReports\\")
 try:
     sId = int(input("Enter student id of the student you would like a report for: "))
 except ValueError:
-    print("\nInvaild input. Please try again with the students 7 digit id number. Program ending")
+    print("\nInvaild input. Please try again with the student's 7 digit id number. Program ending")
     quit()
     
 
@@ -102,29 +102,29 @@ def createReport(studentInfo):
     for y in allCredits:
             creditSum += int(y)
 
-
     #figure out GPA 
-    for w in allCredits:
-        # convert grades to number
-        for z in allGrades:
-            if z == 'A':
-                z = 4
-            elif z == 'B':
-                z = 3
-            elif z == 'C':
-                z = 2
-            elif z == 'D':
-                z = 1
-            else:
-                z = 0
-            # times grade value * that class credit 
-            product = z * int(w)
+    for w in range(length):
+        num1 = int(allCredits[w])
+        g = allGrades[w]
+        if g == 'A':
+            num2 = 4
+        elif g == 'B':
+            num2 = 3
+        elif g == 'C':
+            num2 = 2
+        elif g == 'D':
+            num2 = 1
+        else:
+            num2 = 0
+        # times grade value * that class credit
+        product = num1 * num2
         # add up all courses
         productSum += product
-
+        
     # calculate gpa 
     gpaTotal = 0
-    gpaTotal = productSum / creditSum 
+    gpaTotal = productSum / creditSum
+    gpaTotal = round(float(gpaTotal), 1)
   
     # last couple strings of report to be added 
     totalCredits = (f"\nTotal Semester Course Credits Completed: {creditSum}")
@@ -151,7 +151,7 @@ def writeFile(fName, content):
 # ouputs created file 
 def outputFile(fPath):
   print("Your report can be found in the studentReports folder:", fPath)
-  print("An example of your report is as follows:")
+  print("An example of your report is as follows:\n")
 
   getFile = open(fPath, "r")
   print(getFile.read())
