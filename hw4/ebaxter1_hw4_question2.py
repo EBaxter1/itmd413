@@ -54,11 +54,51 @@ def searchFile():
 
     Course Code    Course Credits   Course Grade
     --------------------------------------------
-                   {creditAll[0]}                {gradeAll[0]}
     ''')
 
-    print(test)
+    length = len(code)
 
+    str3 = ""
+    str1 = ""
+    for x in range(length):
+        str1 = (f'{code[x]}               {creditAll[x]}               {gradeAll[x]}')
+        reportFormat += str1 + "\n    "
+        
+
+    print(reportFormat)
+
+    sum1 = 0
+    sum2 = 0
+    sum3 = 0
+
+    for y in creditAll:
+            sum1 += int(y)
+            
+    for w in creditAll:
+        for z in gradeAll:
+            if z == 'A':
+                z = 4
+            elif z == 'B':
+                z = 3
+            elif z == 'C':
+                z = 2
+            elif z == 'D':
+                z = 1
+            else:
+                z = 0
+            sum2 = z * int(w)
+        sum3 += sum2
+  
+    sum4 = 0
+    sum4 = sum3 / sum1 
+  
+        
+    total = (f"\n   Total Semester Course Credits Completed: {sum1}")
+    gpa = (f"\n   Semester GPA: {sum4}")
+
+    reportFormat += total
+    reportFormat += gpa 
+    print(reportFormat)
       
 
 
