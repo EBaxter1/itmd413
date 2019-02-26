@@ -17,7 +17,7 @@ def main():
     #check if inputs have spaces and aren't empty
     if " " in tupleOne and tupleOne != " " and " " in tupleTwo and tupleTwo != " ":
         #check and see if there are 9 numbers in both matrices 
-        if tOneLen == tTwoLen:
+        if tOneLen == tTwoLen and tOneLen == 9:
             #try and convert to float
             try:
                 #make 3x3 tuples
