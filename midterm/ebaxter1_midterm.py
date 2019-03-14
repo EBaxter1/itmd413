@@ -14,6 +14,7 @@ def main():
     if testInput(loanAmount, yearAmount, annualRate):
         calcPayment(loanAmount, yearAmount, annualRate)
 
+
 def testInput(loan, years, rate):
     if " " in loan:
         print("Invaild input for loan amount! Please try again with no spaces!")
@@ -35,26 +36,44 @@ def testInput(loan, years, rate):
         return True
     else:
         print("Invaild input. Please try again")
-        
-def calcPayment(loan, years, rate):
-    convertRate = float(rate) / 100
-    months = float(years) * 12
-    monthlyPay = float(loan) / months
-    interst = convertRate * monthlyPay
-   
-    print("{0:.2f}".format(interst), convertRate,"{0:.2f}".format(monthlyPay))
-    stringInterst = "{0:.2f}".format(interst)
-    stringMonthly = "{0:.2f}".format(monthlyPay)
-    i = 1
-    print(f'''Monthly Payment: {monthlyPay}\nTotal Payment: {loan}\n\nPayment#    Interest   Principal   Balance''')
-    for x in range(1,int(months)):
-        print(f'{x}   ' + format(interst, '{0:.2f}.') + '   {0:.2f}'.format(monthlyPay - interst))
-        
-        
-        
 
-#def displayInfo():
-    
+       
+def calcPayment(loan, years, rate):
+    monthlyRate = (float(rate) / 12) / 100
+    months = float(years) * 12
+    monthlyPay = (monthlyRate * float(loan)) / (1 - (1 + monthlyRate)**(-months))
+    interest = monthlyRate * float(loan)
+   
+    balance = (float(loan) - (monthlyPay - interest))
+    principal = monthlyPay - interest
+
+    displayInfo(monthlyPay, months, principal, balance, interest, monthlyRate)
+      
+
+def displayInfo(pay, length, prin, newBalance, newInterest, monthRate):
+    stringMonthly = "${:,.2f}".format(pay)
+    stringTotal = "${:,.2f}".format(pay * length)
+    spaces = "           "
+    sizeTest = True
+    sizeTest2 =  True
+
+    print(f'''\nMonthly Payment: {stringMonthly}\nTotal Payment: {stringTotal}\n\nPayment#    Interest   Principal   Balance''')
+    for x in range(1,int(length)+1):
+        stringInterest = "${0:.2f}".format(newInterest)
+        stringPrincipal = "${:,.2f}".format(prin)
+        stringNewBalance = "${:,.2f}".format(newBalance)
+        print(f'{x}{spaces}{stringInterest}     {stringPrincipal}    {stringNewBalance}')
+        newInterest = monthRate * newBalance
+        prin = pay - newInterest
+        newBalance = (newBalance - (prin))
+        if sizeTest == True:
+            if x >= 9 and x < 100:
+                spaces = "          "
+                test = False
+        if sizeTest2 == True:
+            if x >= 99:
+                spaces = "         "
+                test2 = False
 
 
 #call main
