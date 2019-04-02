@@ -42,7 +42,7 @@ def main():
                 # stop while loop
                 noStop = "n"
         except ValueError:
-            @ write file 
+            # write file 
             writeFile(fileName, newDic)
             # stop while loop
             noStop = "n"
@@ -105,6 +105,7 @@ def addValue(dic, file):
         return(dic)
     else:
         print("Invalid email format! Please try again real email format(contains @ and .)")
+        return(dic)
    
 # function to update email    
 def updateValue(dic):
@@ -129,10 +130,13 @@ def updateValue(dic):
                 return(dic)
             else:
                 print("Invalid email format! Please try again real email format(contains @ and .)")
+                return(dic)
         else:
             print("Email not found!")
+            return(dic)
     else:
         print("Invalid email format! Please try again real email format(contains @ and .)")
+        return(dic)
 
 # function to delete a key value pair 
 def delValue(dic):
@@ -150,8 +154,10 @@ def delValue(dic):
                 return(dic)
         else:
             print("Email not found!")
+            return(dic)
     else:
         print("Invalid email format! Please try again real email format(contains @ and .)")
+        return(dic)
 
 # function to write dictionary to file 
 def writeFile(file, dic):
