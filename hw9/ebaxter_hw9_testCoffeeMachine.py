@@ -32,7 +32,44 @@ def insert(quarters, dimes, nickels):
     return userTotal
 
 def select(): #add something to say how many cups they want
+    newTotal = newMachine.getTotal()
+    singlePrice = newMachine.getPrice()
+    inventory = newMachine.getQuantity()
 
+    try:
+        amount = int(input("How many cups of coffee do you want?: "))
+
+        if (newTotal / amount) == singlePrice and amount <= inventory:
+            print("Coffee is now being dispensed..")
+            newMachine.setQuantity(inventory - amount)
+            print('''______
+                  ______   |
+                        |__|
+                         ||
+                         || 
+                   ______________
+                   \             /
+                    \           /
+                     \         /  
+                     |        |
+                     |        |
+                     |        |
+                     |________|
+                  ''')
+             print('''
+                         |||                            
+                   ______________
+                   \             /
+                    \ Caution   /
+                     \  Hot!   /  
+                     |        |
+                     |        |
+                     |        |
+                     |________|
+                  ''')
+            print("Coffee done pouring. Enjoy!") 
+    except ValueError:
+        print("Error! Please enter a whole number!")
 '''
 def refund():
 '''
