@@ -7,7 +7,7 @@ This program will have the class for a coffee machine and the constructors and m
 # class that has methods to get information about a coffeeMachine 
 class coffeeMachine:
     #constructor for number of cups, price of coffee and total amount of moeny inserted by user
-    def __init__(self,quantity = 0, price = 1.30, total = 0.0):
+    def __init__(self,quantity = 10, price = 1.30, total = 0.0):
         self.price = price
         self.quantity = quantity
         self.total = total
