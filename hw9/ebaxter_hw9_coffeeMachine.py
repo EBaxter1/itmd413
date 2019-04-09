@@ -1,7 +1,7 @@
 '''
 File Name: ebaxter_hw9_coffeeMachine.py
 Made by: Erin Baxter
-This program will have the class for a coffee machine and the methods needed to interact with it
+This program will have the class for a coffee machine and the constructors and methods needed to interact with it
 '''
 
 # class that has methods to get information about a coffeeMachine 
