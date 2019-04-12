@@ -29,6 +29,11 @@
 
 **Homework 9:** *Classes*
 * Has a coffee vending machine class that has information for inventory and prices
+* Also coffee machine tester class that creates a object of a coffee machine and also user to interact with it
+
+**Homework 10:** *Inheritance*
+* First file holds Employee and ProductionWorker classes that hold attribute data
+* Second file has new ProductionWorker object that gets user input, stores and displays it 
 
 ## Exams
 **Midterm:** *Topics 1-9*
