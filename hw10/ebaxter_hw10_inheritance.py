@@ -4,7 +4,7 @@ Made by: Erin Baxter
 This program will have the classes Employee and ProductionWorker and their attributes 
 '''
 
-class Employee():
+class Employee(object):
     def __init__(self, name, eNumber):
         self.name = name
         self.eNumber = eNumber
@@ -16,12 +16,11 @@ class Employee():
 class ProductionWorker(Employee):
 
     def __init__(self, name, eNumber, shift, rate):
+        super(ProductionWorker, self).__init__(name, eNumber)
         self.shift = shift
         self.rate = rate
 
-        Employee__init___(self, name, eNumber)
-
-
+       
     def getShift(self):
         return self.shift
 
