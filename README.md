@@ -33,7 +33,11 @@
 
 **Homework 10:** *Inheritance*
 * First file holds Employee and ProductionWorker classes that hold attribute data
-* Second file has new ProductionWorker object that gets user input, stores and displays it 
+* Second file has new ProductionWorker object that gets user input, stores and displays it
+
+**Homework 11:** *Polymorphism*
+* File 1 has 3 classes Ship, CruiseShip and CargoShip with the last two classes being derived from the first. They also override some Functions
+* File 2 runs through the classes and steps through classes
 
 ## Exams
 **Midterm:** *Topics 1-9*
