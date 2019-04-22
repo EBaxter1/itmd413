@@ -7,30 +7,29 @@ This program will have the classes Ship, CruiseShip, CargoShip and their members
 # parent class that has name of ship, built year, accessers, mutators and print function
 class Ship(object):
     def __init__(self, name, year):
-        self.__name = name
-        self.__year = year
+        self.name = name
+        self.year = year
 
     def getName(self):
-        return self.name
+        return self.__name
 
     def getYear(self):
         return self.year
 
     def setName(self, name):
-        self.name = name
+        self.__name = name
 
     def setYear(self, year):
         self.year = year
         
-    # @property
     def displayData(self):
-        print("Ship name:", self.__name)
-        print("Ship built in:", self.__year)
+        print("Ship name:", self.name)
+        print("Ship built in:", self.year)
 
 
-def CruiseShip(Ship):
-    def __init__(self, peeps):
-        Ship.__init__(self, name)
+class CruiseShip(Ship):
+    def __init__(self, name, year, peeps):
+        super(CruiseShip, self).__init__(name, year)
         self.peeps = peeps
 
     def getPeeps(self):
@@ -39,10 +38,25 @@ def CruiseShip(Ship):
     def setPeeps(self, peeps):
         self.peeps = peeps
 
-    # @property
-    def displayOData(self):
+    def displayData(self):
         print("Ship name:", self.name)
         print("Maximum number of passengers:", self.peeps)
+
+
+class CargoShip(Ship):
+    def __init__(self, name, year, cargo):
+        super(CargoShip, self).__init__(name, year)
+        self.cargo = cargo
+
+    def getCargo(self):
+        return self.cargo
+
+    def setCargo(self, peeps):
+        self.cargo = cargo
+
+    def displayData(self):
+        print("Ship name:", self.name)
+        print(f"Ship cargo capacity: {self.cargo} tons")
 
 
         
