@@ -39,6 +39,11 @@
 * File 1 has 3 classes Ship, CruiseShip and CargoShip with the last two classes being derived from the first. They also override some Functions
 * File 2 runs through the classes and steps through classes
 
+**Homework 12:** *Recursions*
+* This file will have two functions:
+  1. reverseDisplay will return a given interger value reversely
+  2. decimaltoHex will convert a decimal number into a hex number as a string 
+
 ## Exams
 **Midterm:** *Topics 1-9*
 * Calculates loan repayment monthly amount and generates schedule
