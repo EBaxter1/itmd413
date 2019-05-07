@@ -34,11 +34,11 @@ def calc(coins):
         hDol = (int(coins["Half-Dollars"].get()) * .50)
         print(hDol)
 
-        dol = (int(coins["Dollar Coins"].get()) * .50)
+        dol = (int(coins["Dollar Coins"].get()) * 1.0)
         print(dol)
         
     except ValueError:
-        print("Please enter whole values only!")
+        messagebox.showerror("showerror", "Error! Please enter whole values only for coins!")
 
 def makeFields(window, coins):
     fields = {}
