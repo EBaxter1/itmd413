@@ -10,36 +10,57 @@ print("Hello and welcome to the Change Counter 27,000!")
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-coins = ("Quarters:", "Dimes:", "Nickels:", "Pennies:", "Half-Dollars:", "Dollar Coins")
+allCoins = ("Quarters", "Dimes", "Nickels", "Pennies", "Half-Dollars", "Dollar Coins")
 
 window = Tk()
 window.title("Change Counter")
-window.geometry('450x155')
+window.geometry('450x400')
 window.configure(background = "tan");
 
-quart = Label(window ,text = "Quarters:").grid(row = 0,column = 0)
-quart1 = Entry(window).grid(row = 0,column = 1)
+def calc(coins):
+    try:
+        quart = (int(coins["Quarters"].get()) * .25)
+        print(quart)
 
-dime = Label(window ,text = "Dimes:").grid(row = 1,column = 0)
-dime1 = Entry(window).grid(row = 1,column = 1)
+        dime = (int(coins["Dimes"].get()) * .10)
+        print(dime)
 
-nick = Label(window ,text = "Nickels:").grid(row = 2,column = 0)
-nick1 = Entry(window).grid(row = 2,column = 1)
+        nick = (int(coins["Nickels"].get()) * .05)
+        print(nick)
+        
+        pen = (int(coins["Pennies"].get()) * .01)
+        print(pen)
 
-pen = Label(window ,text = "Pennies:").grid(row = 3,column = 0)
-pen1 = Entry(window).grid(row = 3,column = 1)
+        hDol = (int(coins["Half-Dollars"].get()) * .50)
+        print(hDol)
 
-hDoll = Label(window ,text = "Half-Dollar:").grid(row = 4,column = 0)
-hDoll1 = Entry(window).grid(row = 4,column = 1)
+        dol = (int(coins["Dollar Coins"].get()) * .50)
+        print(dol)
+        
+    except ValueError:
+        print("Please enter whole values only!")
 
-doll = Label(window ,text = "Dollar Coin:").grid(row = 5,column = 0)
-doll1 = Entry(window).grid(row = 5,column = 1)
-
-quartValue = Label(window ,text = "Quarter value: $").grid(row = 0,column = 2)
-quartValue1 = Entry(window).grid(row = 0,column = 3)
+def makeFields(window, coins):
+    fields = {}
+    for coin in coins:
+        row = Frame(window)
+        lab = Label(row, width=22, text=coin+":", anchor="w")
+        ent = Entry(row)
+        ent.insert(0,"0")
+        row.pack(side=TOP, fill=X, padx=5, pady=5)
+        lab.pack(side=LEFT)
+        ent.pack(side=RIGHT, expand=YES,fill=X)
+        fields[coin] = ent
+    return fields
 
 def ThankYou():
     messagebox.showinfo("Submited", "Thank You!")
+
     
-btn = ttk.Button(window, text="Compute", command=ThankYou).grid(row=6,column=0)
+ents = makeFields(window, allCoins)
+window.bind("<Return>", (lambda event, e=ents: fetch(e)))
+
+btn = ttk.Button(window, text="Compute", command=(lambda e=ents: calc(e)))
+btn.pack(side=LEFT, padx=5, pady=5)
+
 window.mainloop()
