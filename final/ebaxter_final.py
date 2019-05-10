@@ -6,7 +6,7 @@ which are accessed and changed in order to calculate a patients hospital bill
 '''
 
 class PatientAccount(object):
-    def __init__(self, drugCharge = 0, cutCharge = 0, days = 10, rate = 100, total = 0):
+    def __init__(self, drugCharge = 0, cutCharge = 0, days = 0, rate = 100, total = 0):
         self.drugCharge = drugCharge
         self.cutCharge = cutCharge
         self.days = days
@@ -68,19 +68,19 @@ class Surgery(PatientAccount):
         return self.__prostatectomy
 
     def setAppend(self):
-        PatientAccount.cutCharge = self.__appendectomy
+        bill.cutCharge = self.__appendectomy
 
     def setCSection(self):
-        PatientAccount.cutCharge = self.__c_Section
+        bill.cutCharge = self.__c_Section
 
     def setSGraft(self):
-        PatientAccount.cutCharge = self.__skinGraft
+        bill.cutCharge = self.__skinGraft
 
     def setCat(self):
         bill.cutCharge = self.__cataract
 
     def setProst(self):
-        PatientAccount.cutCharge = self.__prostatectomy
+        bill.cutCharge = self.__prostatectomy
 
 
 class Pharmacy(PatientAccount):
@@ -110,30 +110,75 @@ class Pharmacy(PatientAccount):
         bill.drugCharge = self.__vicodin
 
     def setSimvastatin(self):
-        PatientAccount.drugCharge = self.__simvastatin
+        bill.drugCharge = self.__simvastatin
 
     def setLipitor(self):
-        PatientAccount.drugCharge = self.__lipitor
+        bill.drugCharge = self.__lipitor
 
     def setMetformin(self):
-        PatientAccount.drugCharge = self.__metformin
+        bill.drugCharge = self.__metformin
 
     def setAmlodipine(self):
-        PatientAccount.drugCharge = self.__amlodipine
+        bill.drugCharge = self.__amlodipine
 
 def main():
-    new = Pharmacy()
-    print(new.getVicodin())
-    new.setVicodin()
-    print(bill.getDrugCharge())
-    nextNew = Surgery()
-    print(nextNew.getCat())
-    nextNew.setCat()
-    print(bill.getCutCharge())
-    print(bill.getTotal())
+    newCut = Surgery()
+    newDrug = Pharmacy()
+    
+    print("Hello! Welcome to the Patient Bill Calculator final edition!\n")
+    while 1 == 1:
+        try:
+            days = int(input("How many days has the patient been in the hospital?: "))
+            bill.setDays(days)
+        except ValueError:
+            print("Error! Please only use whole numbers!")
+            continue
+        try:
+            cut = int(input(f'''\nWhich surgery did they have?\n1. Appendectomy(enter 1)\n2. A Cesarean Section(enter 2)\n3. Cataract Surgery(enter 3)\n4. A Skin Graft(enter 4)\n5. A Prostatectomy(enter 5)\nEnter option: '''))
+            if cut == 1:
+                newCut.setAppend()
+            elif cut == 2:
+                newCut.setCSection()
+            elif cut == 3:
+                newCut.setCat()
+            elif cut == 4:
+                newCut.setSGraft()
+            elif cut == 5:
+                newCut.setProst()
+            else:
+                print("Please choose an option between 1 and 5!")
+                continue
+
+            drug = int(input(f'''\nWhich medicatiuon did they get prescribed?\n1. Vicodin(enter 1)\n2. Simvastatin(enter 2)\n3. Lipitor(enter 3)\n4. Metformin(enter 4)\n5. Amlodipine(enter 5)\nEnter option: '''))
+            if drug == 1:
+                newDrug.setVicodin()
+                break
+            elif drug == 2:
+                newDrug.setSimvastatin()
+                break
+            elif drug == 3:
+                newDrug.setLipitor()
+                break
+            elif drug == 4:
+                newDrug.setMetformin()
+                break
+            elif drug == 5:
+                newDrug.setAmlodipine()
+                break
+            else:
+                print("Please choose an option between 1 and 5!")
+                continue
+            
+        except ValueError:
+            print("Error! Put choose an option betwen numbers 1 and 5!")
+            continue
+        
+    print("\nPatient total hospital bill is: " + "${:,.2f}".format(bill.getTotal()))
+        
+                
     
 
 # call main
 main()
 
-print("Thank you for staying. Goodbye!")
+print("\nGoodbye!")
