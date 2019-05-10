@@ -25,7 +25,7 @@ class PatientAccount(object):
     def getDays(self):
         return self.days
 
-    def getRate(self, rate):
+    def getRate(self):
         return self.__rate
 
     def getTotal(self):
@@ -136,13 +136,13 @@ def main():
     newDrug = Pharmacy()
 
     #say hi
-    print("Hello! Welcome to the Patient Check out and Bill Calculator final edition!\n")
+    print("Hello! Welcome to the Patient Check out and Bill Calculator final edition!")
 
     #while loop that runs for ever if there is errors 
     while 1 == 1:#makes while always true
         try:
             # get number of days 
-            days = int(input("How many days has the patient been in the hospital?: "))
+            days = int(input("\nHow many days has the patient been in the hospital?: "))
             bill.setDays(days) #set number of stays 
         except ValueError:
             print("Error! Please only use whole numbers!")
@@ -188,12 +188,13 @@ def main():
                 continue # keep loop running if error
             
         except ValueError:
-            print("Error! Put choose an option betwen numbers 1 and 5!")
+            print("Error! Put choose an option betwen 1 and 5!")
             continue # keep loop running if error
         
     # display pretty bill with formatting by calling PatientAccount classs getetrs
     print("\nChecking out Patient and Generating Bill....\n| Patient Bill |")
     print(f"| Days in Hospital: {bill.getDays()}")
+    print(f"| Daily Hospital Rate: " + "${:,.2f}".format(bill.getRate()))
     print("| Surgery Cost: " + "${:,.2f}".format(bill.getCutCharge()))
     print("| Medication Cost: " + "${:,.2f}".format(bill.getDrugCharge()))
     print("|--------------------------------------------")
