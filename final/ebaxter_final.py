@@ -5,7 +5,9 @@ This program will have the classes PatientAccount, Surgery and Pharmacy
 which are accessed and changed in order to calculate a patients hospital bill
 '''
 
+#this class holds the charge data for a bill and the rate price 
 class PatientAccount(object):
+    #constructor
     def __init__(self, drugCharge = 0, cutCharge = 0, days = 0, rate = 100, total = 0):
         self.drugCharge = drugCharge
         self.cutCharge = cutCharge
@@ -41,9 +43,11 @@ class PatientAccount(object):
 
     def setRate(self, rate):
         self.__rate = rate
-        
+
+#new object of Patient class so other classes can change it variables
 bill = PatientAccount()
 
+# this class has multipl surgerys and their cost. The setters of this class change the cutCharge variablein PatientAccount
 class Surgery(PatientAccount):
     def __init__(self, appendectomy = 2000, c_Section = 3000, cataract = 10000, skinGraft = 5600, prostatectomy = 2500):
         self.__appendectomy = appendectomy
@@ -51,7 +55,8 @@ class Surgery(PatientAccount):
         self.__cataract = cataract
         self.__skinGraft = skinGraft
         self.__prostatectomy = prostatectomy
-
+        
+    #getters
     def getAppend(self):
         return self.__appendectomy
 
@@ -67,6 +72,7 @@ class Surgery(PatientAccount):
     def getProst(self):
         return self.__prostatectomy
 
+    #setters, uses bill object to get get PatientAccount variable
     def setAppend(self):
         bill.cutCharge = self.__appendectomy
 
@@ -82,7 +88,7 @@ class Surgery(PatientAccount):
     def setProst(self):
         bill.cutCharge = self.__prostatectomy
 
-
+#this class has different medications and their cost. The setter methods change the drugCharger variable in PatientAccount
 class Pharmacy(PatientAccount):
     def __init__(self, vicodin = 100, simvastatin = 50, lipitor = 120, metformin = 97, amlodipine = 225):
         self.__vicodin = vicodin
@@ -91,6 +97,7 @@ class Pharmacy(PatientAccount):
         self.__metformin = metformin
         self.__amlodipine = amlodipine
 
+    #getters
     def getVicodin(self):
         return self.__vicodin
 
@@ -106,6 +113,7 @@ class Pharmacy(PatientAccount):
     def getAmlodipines(self):
         return self.__amlodipines
 
+    #setters, use bill object to get get PatientAccount variable
     def setVicodin(self):
         bill.drugCharge = self.__vicodin
 
@@ -121,20 +129,28 @@ class Pharmacy(PatientAccount):
     def setAmlodipine(self):
         bill.drugCharge = self.__amlodipine
 
+#this main method makes a menu for the different options and then calls the right classes to set and get data
 def main():
+    #objects of Surgery and Pharmacy classes 
     newCut = Surgery()
     newDrug = Pharmacy()
-    
-    print("Hello! Welcome to the Patient Bill Calculator final edition!\n")
-    while 1 == 1:
+
+    #say hi
+    print("Hello! Welcome to the Patient Check out and Bill Calculator final edition!\n")
+
+    #while loop that runs for ever if there is errors 
+    while 1 == 1:#makes while always true
         try:
+            # get number of days 
             days = int(input("How many days has the patient been in the hospital?: "))
-            bill.setDays(days)
+            bill.setDays(days) #set number of stays 
         except ValueError:
             print("Error! Please only use whole numbers!")
-            continue
+            continue #make loop keep going 
         try:
+            #get surgery option choice 
             cut = int(input(f'''\nWhich surgery did they have?\n1. Appendectomy(enter 1)\n2. A Cesarean Section(enter 2)\n3. Cataract Surgery(enter 3)\n4. A Skin Graft(enter 4)\n5. A Prostatectomy(enter 5)\nEnter option: '''))
+            #if statements to call setter functions of surgery class
             if cut == 1:
                 newCut.setAppend()
             elif cut == 2:
@@ -147,9 +163,11 @@ def main():
                 newCut.setProst()
             else:
                 print("Please choose an option between 1 and 5!")
-                continue
+                continue # keep loop running if error 
 
-            drug = int(input(f'''\nWhich medicatiuon did they get prescribed?\n1. Vicodin(enter 1)\n2. Simvastatin(enter 2)\n3. Lipitor(enter 3)\n4. Metformin(enter 4)\n5. Amlodipine(enter 5)\nEnter option: '''))
+            #get medication option choice
+            drug = int(input(f'''\nWhich medication did they get prescribed?\n1. Vicodin(enter 1)\n2. Simvastatin(enter 2)\n3. Lipitor(enter 3)\n4. Metformin(enter 4)\n5. Amlodipine(enter 5)\nEnter option: '''))
+            #if statements to call setter functions of pharmacy class, they also end the while loop since bill is down
             if drug == 1:
                 newDrug.setVicodin()
                 break
@@ -167,18 +185,23 @@ def main():
                 break
             else:
                 print("Please choose an option between 1 and 5!")
-                continue
+                continue # keep loop running if error
             
         except ValueError:
             print("Error! Put choose an option betwen numbers 1 and 5!")
-            continue
+            continue # keep loop running if error
         
-    print("\nPatient total hospital bill is: " + "${:,.2f}".format(bill.getTotal()))
-        
-                
+    # display pretty bill with formatting by calling PatientAccount classs getetrs
+    print("\nChecking out Patient and Generating Bill....\n| Patient Bill |")
+    print(f"| Days in Hospital: {bill.getDays()}")
+    print("| Surgery Cost: " + "${:,.2f}".format(bill.getCutCharge()))
+    print("| Medication Cost: " + "${:,.2f}".format(bill.getDrugCharge()))
+    print("|--------------------------------------------")
+    print("| Patient total hospital bill is: " + "${:,.2f}".format(bill.getTotal()))         
     
 
 # call main
 main()
 
+#say bye
 print("\nGoodbye!")
