@@ -42,8 +42,15 @@
 **Homework 12:** *Recursions*
 * This file will have two functions:
   1. reverseDisplay will return a given interger value reversely
-  2. decimaltoHex will convert a decimal number into a hex number as a string 
+  2. decimaltoHex will convert a decimal number into a hex number as a string
+
+**Homework 13:** *Graphical User Interface*
+* Display a GUI that computes the dollar and cents value of coins inputted **In-complete**
+
 
 ## Exams
 **Midterm:** *Topics 1-9*
 * Calculates loan repayment monthly amount and generates schedule
+
+**Final:**
+* This program will compute a patient’s bill for a hospital stay by accessing and changing variables in the classes: PatientAccount, Surgery and Pharmacy and then outputs the bill
